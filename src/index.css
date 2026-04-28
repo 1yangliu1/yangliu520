@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
+  }
+}
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+@layer utilities {
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 5px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: #e5e5e5;
+    border-radius: 3px;
+  }
+  
+  @keyframes text-glow {
+    0% {
+      text-shadow: 0 0 4px rgba(234, 179, 8, 0.3), 0 0 8px rgba(234, 179, 8, 0.1);
+    }
+    100% {
+      text-shadow: 0 0 8px rgba(234, 179, 8, 0.8), 0 0 16px rgba(234, 179, 8, 0.5), 0 0 24px rgba(234, 179, 8, 0.3);
+    }
+  }
+
+  @keyframes border-breathe {
+    0% {
+      box-shadow: inset 0 0 0 1px transparent, 0 0 0 transparent;
+    }
+    50% {
+      box-shadow: inset 0 0 0 2px rgba(245, 158, 11, 0.9), 0 0 12px rgba(245, 158, 11, 0.7);
+    }
+    100% {
+      box-shadow: inset 0 0 0 1px transparent, 0 0 0 transparent;
+    }
+  }
+
+  .animate-text-glow {
+    animation: text-glow 2s ease-in-out infinite alternate;
+  }
+  
+  .animate-border-breathe {
+    animation: border-breathe 3s ease-in-out infinite;
+  }
+}
+
+/* React Flow Handle Optimization */
+.react-flow__handle {
+  width: 40px !important;
+  height: 40px !important;
+  background: transparent !important;
+  border: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: crosshair !important;
+  z-index: 50 !important;
+}
+
+.react-flow__handle::after {
+  content: "";
+  display: block;
+  width: 12px;
+  height: 12px;
+  background-color: #94a3b8;
+  border: 2px solid white;
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.react-flow__handle:hover::after,
+.react-flow__handle.connecting::after {
+  background-color: #9333ea;
+  transform: scale(1.5);
+  box-shadow: 0 0 10px rgba(147, 51, 234, 0.4);
+}
+
+.react-flow__handle-top { top: -20px !important; }
+.react-flow__handle-bottom { bottom: -20px !important; }
+.react-flow__handle-left { left: -20px !important; }
+.react-flow__handle-right { right: -20px !important; }
